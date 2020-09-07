@@ -1,18 +1,19 @@
 package co.kodevincere.assetsmanager
 
-data class ConfigFile
+
+data class ConfigFileValues
 constructor(
-        var defaultFolder: String = "/constants",
-        var ignoreFonts: Boolean = true,
-        var nameOfAssetsClass: String = "Assets",
-        var nameOfAssetsFile: String = "assets_manager",
-        var mergeFontsInAssetsClass: Boolean = false,
-        var nameOfFontsClass: String = "Fonts",
-        var nameOfFontsFile: String = "assets_manager",
-        var mergeInSingleFile: Boolean = true,
+        var defaultFolder: String? = "/constants",
+        var ignoreFonts: Boolean? = true,
+        var nameOfAssetsClass: String? = "Assets",
+        var nameOfAssetsFile: String? = "assets_manager",
+        var mergeFontsInAssetsClass: Boolean? = false,
+        var nameOfFontsClass: String? = "Fonts",
+        var nameOfFontsFile: String? = "assets_manager",
+        var mergeInSingleFile: Boolean? = true,
 )
 
-data class ConfigFileNamed constructor(
+data class ConfigFileKey constructor(
         var defaultFolder: String = "folder",
         var ignoreFonts: String = "ignore-fonts",
         var nameOfAssetsClass: String = "name-assets-class",
@@ -22,3 +23,4 @@ data class ConfigFileNamed constructor(
         var nameOfFontsFile: String = "name-fonts-file",
         var mergeInSingleFile: String = "single-file",
 )
+
