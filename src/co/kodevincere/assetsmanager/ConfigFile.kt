@@ -3,7 +3,8 @@ package co.kodevincere.assetsmanager
 
 data class ConfigFileValues
 constructor(
-        var defaultFolder: String? = "/constants",
+        var assetsFolder: String? = "assets",
+        var defaultFolder: String? = "lib/constants",
         var ignoreFonts: Boolean? = true,
         var nameOfAssetsClass: String? = "Assets",
         var nameOfAssetsFile: String? = "assets_manager",
@@ -14,7 +15,8 @@ constructor(
 )
 
 data class ConfigFileKey constructor(
-        var defaultFolder: String = "folder",
+        var assetsFolder: String = "assets-folder",
+        var defaultFolder: String = "folder-output",
         var ignoreFonts: String = "ignore-fonts",
         var nameOfAssetsClass: String = "name-assets-class",
         var nameOfAssetsFile: String = "name-assets-file",

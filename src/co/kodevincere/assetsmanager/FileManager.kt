@@ -20,16 +20,26 @@ class FileManager {
         file.bufferedWriter().use { out ->
             out.write("name: AssetsManager Config\n")
             out.write("description: A Config to create a better experience with plugin\n")
+
             out.newLine()
             out.newLine()
+            out.write("# Input assets directory\n")
+            out.write("${named.assetsFolder}: ${configFile.assetsFolder}\n")
+
+            out.newLine()
+            out.write("# Output assets config\n")
+
             out.write("${named.defaultFolder}: ${configFile.defaultFolder}\n")
             out.write("${named.ignoreFonts}: ${configFile.ignoreFonts}\n")
             out.write("${named.nameOfAssetsClass}: ${configFile.nameOfAssetsClass}\n")
             out.write("${named.nameOfAssetsFile}: ${configFile.nameOfAssetsFile}\n")
-            out.write("${named.mergeFontsInAssetsClass}: ${configFile.mergeFontsInAssetsClass}\n")
-            out.write("${named.nameOfFontsClass}: ${configFile.nameOfFontsClass}\n")
-            out.write("${named.nameOfFontsFile}: ${configFile.nameOfFontsFile}\n")
-            out.write("${named.mergeInSingleFile}: ${configFile.mergeInSingleFile}\n")
+
+            out.newLine()
+            out.write("# Output fonts config\n")
+            out.write("#${named.nameOfFontsClass}: ${configFile.nameOfFontsClass}\n")
+            out.write("#${named.nameOfFontsFile}: ${configFile.nameOfFontsFile}\n")
+            out.write("#${named.mergeInSingleFile}: ${configFile.mergeInSingleFile}\n")
+            out.write("#${named.mergeFontsInAssetsClass}: ${configFile.mergeFontsInAssetsClass}\n")
         }
     }
 
@@ -46,6 +56,7 @@ class FileManager {
         val namedFile = ConfigFileKey()
         val defaultValues = ConfigFileValues()
         return ConfigFileValues(
+                assetsFolder = obj[namedFile.assetsFolder] as String? ?: defaultValues.assetsFolder,
                 defaultFolder = obj[namedFile.defaultFolder] as String? ?: defaultValues.defaultFolder,
                 ignoreFonts = obj[namedFile.ignoreFonts] as Boolean? ?: defaultValues.ignoreFonts,
                 nameOfAssetsClass = obj[namedFile.nameOfAssetsClass] as String? ?: defaultValues.nameOfAssetsClass,
