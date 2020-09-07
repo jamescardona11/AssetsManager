@@ -5,13 +5,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class AssetsManager extends AnAction {
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-
+        System.out.println("Updating assets manager...");
     }
 
-    @Override
-    public boolean isDumbAware() {
-        return false;
-    }
 }
