@@ -1,0 +1,128 @@
+{
+  "appInfo" : {
+    "build" : "202.6397.94",
+    "buildDate" : "Mon, 27 Jul 2020 05:39:54 -0500",
+    "productCode" : "IC",
+    "generated" : "Tue, 8 Sep 2020 17:50:00 -0500",
+    "os" : "macOS 10.15.6",
+    "runtime" : "JetBrains s.r.o. 11.0.7 11.0.7+10-b944.20"
+  },
+  "runtimeInfo" : {
+    "maxMemory" : 536870912,
+    "numberOfProcessors" : 6,
+    "maxNumberOfIndexingThreads" : 4,
+    "maxSizeOfFileForIntelliSense" : 2560000,
+    "maxSizeOfFileForContentLoading" : 20971520
+  },
+  "projectIndexingHistory" : {
+    "projectName" : "test_plugin",
+    "numberOfFileProviders" : 2,
+    "totalNumberOfFiles" : 2,
+    "times" : {
+      "indexingTime" : "368 ms",
+      "scanFilesTime" : "282 ms",
+      "pushPropertiesTime" : "39 ms",
+      "indexExtensionsTime" : "< 1 ms",
+      "pushPropertiesStart" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "pushPropertiesEnd" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "scanFilesStart" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "scanFilesEnd" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "indexExtensionsStart" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "indexExtensionsEnd" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "indexingStart" : "Tue, 8 Sep 2020 17:50:00 -0500",
+      "indexingEnd" : "Tue, 8 Sep 2020 17:50:00 -0500"
+    },
+    "numberOfIndexingThreads" : 4,
+    "totalStatsPerFileType" : [ {
+      "fileType" : "XML",
+      "partOfTotalIndexingTime" : "56.7%",
+      "partOfTotalContentLoadingTime" : "90.8%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "2.58 kB",
+      "indexingSpeed" : "107.92 MB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Module 'test_plugin'",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "2.58 kB",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    }, {
+      "fileType" : "UNKNOWN",
+      "partOfTotalIndexingTime" : "43.3%",
+      "partOfTotalContentLoadingTime" : "9.2%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "0 B",
+      "indexingSpeed" : "0 B/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "0 B",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    } ],
+    "totalStatsPerIndexer" : [ {
+      "indexId" : "filetypes",
+      "partOfTotalIndexingTime" : "32.0%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "2.58 kB",
+      "indexingSpeed" : "191.01 MB/s"
+    }, {
+      "indexId" : "FilenameIndex",
+      "partOfTotalIndexingTime" : "24.6%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "2.58 kB",
+      "indexingSpeed" : "248.08 MB/s"
+    }, {
+      "indexId" : "IdIndex",
+      "partOfTotalIndexingTime" : "24.2%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "0 B",
+      "indexingSpeed" : "0 B/s"
+    }, {
+      "indexId" : "Trigram.Index",
+      "partOfTotalIndexingTime" : "19.2%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "0 B",
+      "indexingSpeed" : "0 B/s"
+    } ],
+    "fileProviderStatistics" : [ {
+      "providerName" : "Module 'test_plugin'",
+      "totalNumberOfFiles" : 1,
+      "totalIndexingTime" : "19 ms",
+      "statsPerFileType" : [ {
+        "fileType" : "XML",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "2.58 kB",
+        "partOfTotalIndexingTime" : "100.0%",
+        "partOfTotalContentLoadingTime" : "100.0%"
+      } ],
+      "statsPerIndexer" : [ {
+        "indexId" : "filetypes",
+        "partOfTotalIndexingTime" : "56.5%"
+      }, {
+        "indexId" : "FilenameIndex",
+        "partOfTotalIndexingTime" : "43.5%"
+      } ],
+      "fastIndexers" : [ ]
+    }, {
+      "providerName" : "Library 'Dart Packages'",
+      "totalNumberOfFiles" : 1,
+      "totalIndexingTime" : "6 ms",
+      "statsPerFileType" : [ {
+        "fileType" : "UNKNOWN",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "0 B",
+        "partOfTotalIndexingTime" : "100.0%",
+        "partOfTotalContentLoadingTime" : "100.0%"
+      } ],
+      "statsPerIndexer" : [ {
+        "indexId" : "IdIndex",
+        "partOfTotalIndexingTime" : "55.8%"
+      }, {
+        "indexId" : "Trigram.Index",
+        "partOfTotalIndexingTime" : "44.2%"
+      } ],
+      "fastIndexers" : [ ]
+    } ]
+  }
+}

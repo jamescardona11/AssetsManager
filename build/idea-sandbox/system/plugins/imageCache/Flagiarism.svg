@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 27 27">
+    <style>
+        .title { font: 6px serif; text-align:center;}
+    </style>
+    <rect width="27" height="27" fill="#ccc"/>
+    <text x="1" y="24" textLength="25" class="title">Flagiarism</text>
+    <!-- Italy -->
+    <rect width="3" height="6" x="0" fill="#009246"/>
+    <rect width="3" height="6" x="3" fill="#fff"/>
+    <rect width="3" height="6" x="6" fill="#ce2b37"/>
+    <!-- Ireland -->
+    <rect fill="#169b62" x="9" y="6" width="3" height="6" />
+    <rect fill="#fff" x="12" y="6" width="3" height="6" />
+    <rect fill="#ff883e" x="15" y="6" width="3" height="6"/>
+    <!-- Hungary -->
+    <rect fill="#436F4D" y="6" width="9" height="2"/>
+    <rect fill="#FFF" y="8" width="9" height="2"/>
+    <rect fill="#CD2A3E" y = "10" width="9" height="2"/>
+    <!-- Germany -->
+    <rect width="9" height="2" y="0" x="9" fill="#000"/>
+    <rect width="9" height="2" y="2" x="9" fill="#D00"/>
+    <rect width="9" height="2" y="4" x="9" fill="#FFCE00"/>
+    <!-- France-->
+    <rect width="3" x="24" y="12" height="6" fill="#ED2939"/>
+    <rect width="3" x="21" y="12" height="6" fill="#fff"/>
+    <rect width="3" x="18" y="12" height="6" fill="#002395"/>
+    <!-- Estonia -->
+    <rect fill="#0072ce" x="9" y="12" width="9" height="2"/>
+    <rect width="9" x="9" y="14" height="2"/>
+    <rect fill="#FFF" x="9" y="16" width="9" height="2"/>
+    <!-- Bulgaria -->
+    <rect width="9" x="18" y="6" height="2" fill="#fff"/>
+    <rect width="9" x="18" y="8" height="2"  fill="#00966E"/>
+    <rect width="9" x="18" y="10" height="2" fill="#D62612"/>
+    <!-- Belgium -->
+    <rect width="3" x="0" y="12" height="6"/>
+    <rect width="3" x="3" y="12" height="6" fill="#fae042"/>
+    <rect width="3" x="6" y="12" height="6" fill="#ed2939"/>
+    <!-- Romania -->
+    <rect width="3" height="6" x="18" y="0" fill="#002B7F"/>
+    <rect width="3" height="6" x="21" y="0" fill="#FCD116"/>
+    <rect width="3" height="6" x="24" y="0" fill="#CE1126"/>
+</svg>

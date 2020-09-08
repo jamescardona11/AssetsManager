@@ -1,0 +1,36 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <data>
+      <entry key="CloseProject">
+        <ActionSummary times="1" last="1599605344458" />
+      </entry>
+      <entry key="EditorBackSpace">
+        <ActionSummary times="7" last="1599605375170" />
+      </entry>
+      <entry key="WelcomeScreen.CreateNewProject">
+        <ActionSummary times="2" last="1599604252179" />
+      </entry>
+      <entry key="WelcomeScreen.Plugins">
+        <ActionSummary times="1" last="1599604072089" />
+      </entry>
+      <entry key="com.intellij.framework.detection.impl.FrameworkDetectionManager$3">
+        <ActionSummary times="1" last="1599604725154" />
+      </entry>
+      <entry key="com.intellij.ide.ReopenProjectAction">
+        <ActionSummary times="1" last="1599605345589" />
+      </entry>
+      <entry key="com.intellij.ide.plugins.DynamicPluginVfsListener$prepareChange$2$afterVfsChange$1$1">
+        <ActionSummary times="1" last="1599604604241" />
+      </entry>
+      <entry key="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+        <ActionSummary times="2" last="1599604729531" />
+      </entry>
+      <entry key="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenComponentFactory$2">
+        <ActionSummary times="1" last="1599604071156" />
+      </entry>
+      <entry key="editRunConfigurations">
+        <ActionSummary times="2" last="1599604994769" />
+      </entry>
+    </data>
+  </component>
+</application>

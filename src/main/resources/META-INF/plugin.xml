@@ -1,0 +1,55 @@
+<idea-plugin>
+    <id>co.kodevincere.assetsmanager</id>
+    <name>Flutter Assets Manager</name>
+    <version>1.0</version>
+    <vendor email="jjcardonao@gmail.com" url="http://www.github.com/jamescardona11">jamescardona11</vendor>
+
+    <description><![CDATA[
+    <div>The easy way to manage your assets Flutter project.</div><br/>
+    <P><b><a href="https://github.com/jamescardona11/AssetsManager">GitHub</a></b></P>
+    <h2>Features</h2>
+    <ul>
+        <li>Update assets declaration in pubspec.yaml automatically.</li>
+        <li>Generate a file whit assets definition in dart</li>
+        <li>Modify config for output and input data</li>
+    </ul>
+    <h2>Getting started</h2>
+    <ul>
+        <li>Open your Flutter project.</li>
+        <li>You may be create manual your assets config or plugin will create the default file</li>
+        <li>Click the plugin in the Toolbar.</li>
+        <li>Now you'll see the pubspec.yaml file has been updated and a file whit definition in dart.</li>
+    </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+     <b>1.0.0</b><br/>Implement basic functions.
+     <ul>
+        <li>Scan asset files under your assets directory, add asset declaration in pubspec.yaml.</li>
+        <li>Generate a file in dart, which contains string-type asset definition.</li>
+     </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action id="FlutterManager"
+                class="co.kodevincere.assetsmanager.AssetsManager"
+                text="Generate Flutter Assets"
+                description="Flutter assets generator"
+                icon="/icons/assets_manager_icon.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>

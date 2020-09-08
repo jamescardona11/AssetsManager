@@ -1,0 +1,20 @@
+<conversion>
+  <applied-converters>
+    <converter id="kotlin-non-jvm-source-roots" />
+    <converter id="junit-to-android-junit-configurations" />
+    <converter id="android-sdk-library" />
+    <converter id="android-module-to-java-module" />
+    <converter id="android-proguard-options" />
+  </applied-converters>
+  <project-files>
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/workspace.xml" timestamp="1599605387896" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/misc.xml" timestamp="1599604298724" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/runConfigurations/main_dart.xml" timestamp="1599604285557" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/modules.xml" timestamp="1599604298728" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/libraries/KotlinJavaRuntime.xml" timestamp="1599604285559" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/libraries/Dart_Packages.xml" timestamp="1599604357180" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/libraries/Flutter_Plugins.xml" timestamp="1599604357184" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/test_plugin.iml" timestamp="1599604357147" />
+    <file path="/Users/zoro/IdeaProjects/test_plugin/.idea/libraries/Dart_SDK.xml" timestamp="1599604285558" />
+  </project-files>
+</conversion>

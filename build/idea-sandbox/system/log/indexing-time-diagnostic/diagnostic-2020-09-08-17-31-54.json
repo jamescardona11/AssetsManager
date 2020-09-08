@@ -1,0 +1,217 @@
+{
+  "appInfo" : {
+    "build" : "202.6397.94",
+    "buildDate" : "Mon, 27 Jul 2020 05:39:15 -0500",
+    "productCode" : "IC",
+    "generated" : "Tue, 8 Sep 2020 17:31:54 -0500",
+    "os" : "macOS 10.15.6",
+    "runtime" : "JetBrains s.r.o. 11.0.7 11.0.7+10-b944.20"
+  },
+  "runtimeInfo" : {
+    "maxMemory" : 536870912,
+    "numberOfProcessors" : 6,
+    "maxNumberOfIndexingThreads" : 4,
+    "maxSizeOfFileForIntelliSense" : 2560000,
+    "maxSizeOfFileForContentLoading" : 20971520
+  },
+  "projectIndexingHistory" : {
+    "projectName" : "test_plugin",
+    "numberOfFileProviders" : 1,
+    "totalNumberOfFiles" : 1000,
+    "times" : {
+      "indexingTime" : "12 s 438 ms",
+      "scanFilesTime" : "807 ms",
+      "pushPropertiesTime" : "5 ms",
+      "indexExtensionsTime" : "< 1 ms",
+      "pushPropertiesStart" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "pushPropertiesEnd" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "scanFilesStart" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "scanFilesEnd" : "Tue, 8 Sep 2020 17:31:43 -0500",
+      "indexExtensionsStart" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "indexExtensionsEnd" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "indexingStart" : "Tue, 8 Sep 2020 17:31:42 -0500",
+      "indexingEnd" : "Tue, 8 Sep 2020 17:31:54 -0500"
+    },
+    "numberOfIndexingThreads" : 4,
+    "totalStatsPerFileType" : [ {
+      "fileType" : "Dart",
+      "partOfTotalIndexingTime" : "99.9%",
+      "partOfTotalContentLoadingTime" : "99.9%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "480.73 kB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 995,
+        "totalFilesSize" : "20.13 MB",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    }, {
+      "fileType" : "YAML",
+      "partOfTotalIndexingTime" : "< 1%",
+      "partOfTotalContentLoadingTime" : "< 1%",
+      "totalNumberOfFiles" : 2,
+      "totalFilesSize" : "3.96 kB",
+      "indexingSpeed" : "189.07 kB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 2,
+        "totalFilesSize" : "3.96 kB",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    }, {
+      "fileType" : "Markdown",
+      "partOfTotalIndexingTime" : "< 1%",
+      "partOfTotalContentLoadingTime" : "< 1%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "604 B",
+      "indexingSpeed" : "64.64 kB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "604 B",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    }, {
+      "fileType" : "JSON",
+      "partOfTotalIndexingTime" : "< 1%",
+      "partOfTotalContentLoadingTime" : "< 1%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "2.65 kB",
+      "indexingSpeed" : "1.92 MB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "2.65 kB",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    }, {
+      "fileType" : "PLAIN_TEXT",
+      "partOfTotalIndexingTime" : "< 1%",
+      "partOfTotalContentLoadingTime" : "< 1%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "144 B",
+      "indexingSpeed" : "1.09 MB/s",
+      "biggestContributors" : [ {
+        "providerName" : "Library 'Dart Packages'",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "144 B",
+        "partOfTotalIndexingTimeOfThisFileType" : "100.0%"
+      } ]
+    } ],
+    "totalStatsPerIndexer" : [ {
+      "indexId" : "DartImportIndex",
+      "partOfTotalIndexingTime" : "91.3%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "526.16 kB/s"
+    }, {
+      "indexId" : "Trigram.Index",
+      "partOfTotalIndexingTime" : "2.4%",
+      "totalNumberOfFiles" : 1000,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "19.63 MB/s"
+    }, {
+      "indexId" : "IdIndex",
+      "partOfTotalIndexingTime" : "2.4%",
+      "totalNumberOfFiles" : 1000,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "19.67 MB/s"
+    }, {
+      "indexId" : "DartSymbolIndex",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "54.82 MB/s"
+    }, {
+      "indexId" : "DartLibraryIndex",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "60.68 MB/s"
+    }, {
+      "indexId" : "DartPathIndex",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "65.27 MB/s"
+    }, {
+      "indexId" : "DartComponentIndex",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "70.51 MB/s"
+    }, {
+      "indexId" : "DartClassIndex",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 995,
+      "totalFilesSize" : "20.13 MB",
+      "indexingSpeed" : "73.11 MB/s"
+    }, {
+      "indexId" : "yaml.keys.name",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 2,
+      "totalFilesSize" : "3.96 kB",
+      "indexingSpeed" : "199.13 kB/s"
+    }, {
+      "indexId" : "Stubs",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "604 B",
+      "indexingSpeed" : "67.5 kB/s"
+    }, {
+      "indexId" : "json.file.root.values",
+      "partOfTotalIndexingTime" : "< 1%",
+      "totalNumberOfFiles" : 1,
+      "totalFilesSize" : "2.65 kB",
+      "indexingSpeed" : "5.03 MB/s"
+    } ],
+    "fileProviderStatistics" : [ {
+      "providerName" : "Library 'Dart Packages'",
+      "totalNumberOfFiles" : 1000,
+      "totalIndexingTime" : "11 s 623 ms",
+      "statsPerFileType" : [ {
+        "fileType" : "Dart",
+        "numberOfFiles" : 995,
+        "totalFilesSize" : "20.13 MB",
+        "partOfTotalIndexingTime" : "99.9%",
+        "partOfTotalContentLoadingTime" : "99.9%"
+      }, {
+        "fileType" : "YAML",
+        "numberOfFiles" : 2,
+        "totalFilesSize" : "3.96 kB",
+        "partOfTotalIndexingTime" : "< 1%",
+        "partOfTotalContentLoadingTime" : "< 1%"
+      }, {
+        "fileType" : "Markdown",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "604 B",
+        "partOfTotalIndexingTime" : "< 1%",
+        "partOfTotalContentLoadingTime" : "< 1%"
+      }, {
+        "fileType" : "JSON",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "2.65 kB",
+        "partOfTotalIndexingTime" : "< 1%",
+        "partOfTotalContentLoadingTime" : "< 1%"
+      }, {
+        "fileType" : "PLAIN_TEXT",
+        "numberOfFiles" : 1,
+        "totalFilesSize" : "144 B",
+        "partOfTotalIndexingTime" : "< 1%",
+        "partOfTotalContentLoadingTime" : "< 1%"
+      } ],
+      "statsPerIndexer" : [ {
+        "indexId" : "DartImportIndex",
+        "partOfTotalIndexingTime" : "91.3%"
+      }, {
+        "indexId" : "Trigram.Index",
+        "partOfTotalIndexingTime" : "2.4%"
+      }, {
+        "indexId" : "IdIndex",
+        "partOfTotalIndexingTime" : "2.4%"
+      } ],
+      "fastIndexers" : [ "DartClassIndex", "DartComponentIndex", "DartLibraryIndex", "DartPathIndex", "DartSymbolIndex", "Stubs", "json.file.root.values", "yaml.keys.name" ]
+    } ]
+  }
+}
