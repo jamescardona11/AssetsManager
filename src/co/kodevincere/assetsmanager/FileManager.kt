@@ -5,14 +5,15 @@ import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.io.InputStream
 
-class FileManager {
+private const val FILE_CONFIG_NAME = "assets_manager_config.yaml"
+const val PUBSPEC_NAME = "pubspec.yaml"
 
-    private val fileConfigName = "assets_manager_config.yaml"
+class FileManager {
 
     fun createDefaultConfigFile(path: String) {
         println("Creating assets manager default config...")
         //Create a default file
-        val file = File("$path/$fileConfigName")
+        val file = File("$path/$FILE_CONFIG_NAME")
 
         //Write default values for file
         val named = ConfigFileKey()
@@ -50,7 +51,7 @@ class FileManager {
         println("Reading assets manager config...")
 
         //Open a default file
-        val file = File("$path/$fileConfigName")
+        val file = File("$path/$FILE_CONFIG_NAME")
         val yaml = Yaml()
         val inputStream: InputStream = file.inputStream()
         val obj = yaml.load<Map<String, Any>>(inputStream)
@@ -73,22 +74,37 @@ class FileManager {
 
     }
 
-    fun readAssets(path: String, configFile: ConfigFileValues = ConfigFileValues()) {
-        val list: ArrayList<AssetsFiles> = ArrayList()
+    fun readAssets(path: String, configFile: ConfigFileValues = ConfigFileValues()) : ArrayList<AssetsFiles>{
+        val finalPath = "$path/${configFile.assetsFolder}"
 
+        val list: ArrayList<AssetsFiles> = ArrayList()
         var folderName = ""
-        File("$path/${configFile.assetsFolder}").walk().forEach {
-            if(it.name.contains(".")) {
-                list.add(AssetsFiles(it.name, folderName, it.path, configFile.postfixAssets, configFile.assetsFolder))
-            }else{
+
+        File(finalPath).walk().forEach {
+            if (it.name.contains(".")) {
+                val finalName = (it.name).replace("-", "_").split(".")
+                val isFont = finalName[1] == "ttf" || finalName[1] == "otf" || folderName == "fonts" || folderName == "Fonts"
+
+                if (!configFile.ignoreFonts!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
+                list.add(
+                        AssetsFiles(
+                                finalName[0],
+                                folderName,
+                                it.path,
+                                configFile.postfixAssets,
+                                configFile.assetsFolder,
+                                isFont
+                        )
+                )
+            } else {
                 folderName = it.name
             }
         }
 
-        for (s in list) {
-            println(s.toString())
-        }
+        return list
     }
 
+    fun createAssetsOutPut(path: String, configFile: ConfigFileValues){
 
+    }
 }

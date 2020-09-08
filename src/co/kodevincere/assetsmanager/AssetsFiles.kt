@@ -1,23 +1,20 @@
 package co.kodevincere.assetsmanager
 
-class AssetsFiles(name: String, val dir: String, path: String, postfix: String?, folderName: String ?) {
-    val filename: String = name
+class AssetsFiles(val name: String, val dir: String, path: String, postfix: String?, folderName: String ?, val isFont: Boolean) {
     val outputName: String
     val path: String
 
     init {
         this.path = formatFolder(path, folderName)
-        this.outputName = formatName(name, postfix)
+        this.outputName = formatName(postfix)
     }
 
-    private fun formatName(name: String, postfix: String?) : String{
-        val finalName = name.replace("-", "_").split(".")
-
+    private fun formatName(postfix: String?) : String{
         var postfixValue = ""
 
         when {
             postfix.equals(PostfixStrategy.EXTENSION.strategy) -> {
-                postfixValue = "_${finalName[1]}"
+                postfixValue = "_${path.split(".")[1]}"
             }
             postfix.equals(PostfixStrategy.FOLDER.strategy) -> {
                 postfixValue = "_$dir"
@@ -28,7 +25,7 @@ class AssetsFiles(name: String, val dir: String, path: String, postfix: String?,
         }
 
 
-        return (finalName[0] + postfixValue).toLowerCase()
+        return (name + postfixValue).toLowerCase()
     }
 
     private fun formatFolder(path: String, folderName: String ?): String {
@@ -37,7 +34,7 @@ class AssetsFiles(name: String, val dir: String, path: String, postfix: String?,
     }
 
     override fun toString(): String {
-        return "AssetsFiles(dir='$dir', path='$path', filename='$filename', outputName='$outputName')"
+        return "AssetsFiles(dir='$dir', name='$name', outputName='$outputName', path='$path', isFont=$isFont)"
     }
 
 
