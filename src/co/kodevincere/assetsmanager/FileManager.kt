@@ -73,7 +73,7 @@ class FileManager {
 
     }
 
-    fun readAssets(path: String, configFile: ConfigFileValues = ConfigFileValues()) : ArrayList<AssetsFiles>{
+    fun readAssets(path: String, configFile: ConfigFileValues = ConfigFileValues()): ArrayList<AssetsFiles> {
         val finalPath = "$path/${configFile.assetsFolder}"
 
         val list: ArrayList<AssetsFiles> = ArrayList()
@@ -84,7 +84,7 @@ class FileManager {
                 val finalName = (it.name).replace("-", "_").split(".")
                 val isFont = finalName[1] == "ttf" || finalName[1] == "otf" || folderName == "fonts" || folderName == "Fonts"
 
-                if (!configFile.ignoreFonts!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
+                if (configFile.ignoreFonts!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
                 list.add(
                         AssetsFiles(
                                 finalName[0],
@@ -103,16 +103,16 @@ class FileManager {
         return list
     }
 
-    fun createAssetsOutPut(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>){
+    fun createAssetsOutPut(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>) {
         println("Creating output file...")
 
         // Create a output dir
         var finalPath = path
-        if(!finalPath.contains("lib")){
-            if(getSlashCharacter(finalPath)) finalPath += "/"
+        if (!finalPath.contains("lib")) {
+            if (getSlashCharacter(finalPath)) finalPath += "/"
             finalPath += "lib"
         }
-        if(getSlashCharacter(finalPath)) finalPath += "/"
+        if (getSlashCharacter(finalPath)) finalPath += "/"
         finalPath = "$finalPath${configFile.folderOutput}"
 
         val dir = File(finalPath)
@@ -120,23 +120,56 @@ class FileManager {
 
 
         // Create a output file
-        val file = File(finalPath+ "/" +configFile.nameOfAssetsFile!! + ".dart")
+        val file = File(finalPath + "/" + configFile.nameOfAssetsFile!! + ".dart")
 
         val defValueDart = "\tstatic const String"
         val middleValueDart = "= \""
         val endValueDart = "\";\n"
 
-        file.bufferedWriter().use { out ->
-            out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
-            assetsFiles.forEach {
-                out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+        if (configFile.ignoreFonts!!) {
+            file.bufferedWriter().use { out ->
+                out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
+                assetsFiles.forEach {
+                    out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+                }
+                out.write("\n}")
             }
-            out.write("\n}")
+        } else {
+
+            if (configFile.mergeFontsInAssetsClass!!) {
+                file.bufferedWriter().use { out ->
+                    out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
+                    assetsFiles.forEach {
+                        out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+                    }
+                    out.write("\n}")
+                }
+            } else {
+                file.bufferedWriter().use { out ->
+                    out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
+                    assetsFiles.forEach {
+                        if (!it.isFont)
+                            out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+                    }
+                    out.write("\n}")
+                    out.newLine()
+                    out.newLine()
+                    out.newLine()
+
+                    out.write("class ${configFile.nameOfFontsClass!!.capitalize()} {\n")
+                    assetsFiles.forEach {
+                        if (it.isFont)
+                            out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+                    }
+
+                }
+            }
         }
+
 
     }
 
     private fun getSlashCharacter(path: String): Boolean {
-        return path[path.lastIndex ] != '/'
+        return path[path.lastIndex] != '/'
     }
 }
