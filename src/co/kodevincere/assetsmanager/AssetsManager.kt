@@ -6,6 +6,8 @@ import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.io.InputStream
 
+const val PUBSPEC_NAME = "pubspec.yaml"
+
 class AssetsManager : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         println("Updating assets manager...")

@@ -2,14 +2,17 @@ package co.kodevincere.assetsmanager
 
 import org.yaml.snakeyaml.Yaml
 import java.io.File
+import java.io.FileWriter
 import java.io.InputStream
 
 private const val FILE_CONFIG_NAME = "assets_manager_config.yaml"
-const val PUBSPEC_NAME = "pubspec.yaml"
+private const val defValueDart = "\tstatic const String"
+private const val middleValueDart = "= \""
+private const val endValueDart = "\";\n"
 
-class FileManager {
+class FileManager(val path: String) {
 
-    fun createDefaultConfigFile(path: String) {
+    fun createDefaultConfigFile() {
         println("Creating assets manager default config...")
         //Create a default file
         val file = File("$path/$FILE_CONFIG_NAME")
@@ -30,7 +33,7 @@ class FileManager {
             out.newLine()
             out.write("# Output config\n")
             out.write("${named.defaultFolder}: ${configFile.folderOutput}\n")
-            out.write("${named.ignoreFonts}: ${configFile.ignoreFonts}\n")
+            out.write("${named.ignoreFonts}: ${configFile.ignoreFontsConfig}\n")
             out.write("${named.postfixAssets}: ${configFile.postfixAssets}\n")
 
             out.newLine()
@@ -42,11 +45,10 @@ class FileManager {
             out.write("# Output fonts config\n")
             out.write("#${named.nameOfFontsClass}: ${configFile.nameOfFontsClass}\n")
             out.write("#${named.nameOfFontsFile}: ${configFile.nameOfFontsFile}\n")
-            out.write("#${named.mergeFontsInAssetsClass}: ${configFile.mergeFontsInAssetsClass}\n")
         }
     }
 
-    fun readConfigFile(path: String): ConfigFileValues {
+    fun readConfigFile(): ConfigFileValues {
         println("Reading assets manager config...")
 
         //Open a default file
@@ -56,24 +58,24 @@ class FileManager {
         val obj = yaml.load<Map<String, Any>>(inputStream)
 
 
+
         val namedFile = ConfigFileKey()
         val defaultValues = ConfigFileValues()
         return ConfigFileValues(
                 assetsFolder = obj[namedFile.assetsFolder] as String? ?: defaultValues.assetsFolder,
                 folderOutput = obj[namedFile.defaultFolder] as String? ?: defaultValues.folderOutput,
-                ignoreFonts = obj[namedFile.ignoreFonts] as Boolean? ?: defaultValues.ignoreFonts,
+                ignoreFontsConfig = obj[namedFile.ignoreFonts] as Boolean? ?: defaultValues.ignoreFontsConfig,
                 postfixAssets = obj[namedFile.postfixAssets] as String? ?: defaultValues.postfixAssets,
                 nameOfAssetsClass = obj[namedFile.nameOfAssetsClass] as String? ?: defaultValues.nameOfAssetsClass,
                 nameOfAssetsFile = obj[namedFile.nameOfAssetsFile] as String? ?: defaultValues.nameOfAssetsFile,
-                mergeFontsInAssetsClass = obj[namedFile.mergeFontsInAssetsClass] as Boolean?
-                        ?: defaultValues.mergeFontsInAssetsClass,
                 nameOfFontsClass = obj[namedFile.nameOfFontsClass] as String? ?: defaultValues.nameOfFontsClass,
                 nameOfFontsFile = obj[namedFile.nameOfFontsFile] as String? ?: defaultValues.nameOfFontsFile,
+                fontConfigNull = obj[namedFile.nameOfFontsClass] == null
         )
 
     }
 
-    fun readAssets(path: String, configFile: ConfigFileValues = ConfigFileValues()): ArrayList<AssetsFiles> {
+    fun readAssets(configFile: ConfigFileValues = ConfigFileValues()): ArrayList<AssetsFiles> {
         val finalPath = "$path/${configFile.assetsFolder}"
 
         val list: ArrayList<AssetsFiles> = ArrayList()
@@ -84,7 +86,7 @@ class FileManager {
                 val finalName = (it.name).replace("-", "_").split(".")
                 val isFont = finalName[1] == "ttf" || finalName[1] == "otf" || folderName == "fonts" || folderName == "Fonts"
 
-                if (configFile.ignoreFonts!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
+                if (configFile.ignoreFontsConfig!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
                 list.add(
                         AssetsFiles(
                                 finalName[0],
@@ -103,70 +105,59 @@ class FileManager {
         return list
     }
 
-    fun createAssetsOutPut(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>) {
+    fun createAssetsOutPut(configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>) {
         println("Creating output file...")
-
         // Create a output dir
+        var finalPath = checkOrAddLibToPath()
+        finalPath = "$finalPath${configFile.folderOutput}"
+        val dir = File(finalPath)
+        dir.mkdirs()
+
+
+        // Create a output file
+        val assetsDartFile = File("$finalPath/${configFile.nameOfAssetsFile!!}.dart")
+        createFileFromZero(assetsDartFile, assetsFiles.filter { !it.isFont }, configFile.nameOfAssetsClass!!)
+
+        if (!configFile.ignoreFontsConfig!! && !configFile.fontConfigNull) {
+            var fontsDartFile: File? = null
+            if(configFile.nameOfAssetsFile!! != configFile.nameOfFontsFile){
+                fontsDartFile = File("$finalPath/${configFile.nameOfFontsFile!!}.dart")
+            }
+            appendInFile(fontsDartFile ?: assetsDartFile , assetsFiles.filter { it.isFont }, configFile.nameOfFontsClass!!)
+        }
+    }
+
+    private fun checkOrAddLibToPath(): String {
         var finalPath = path
         if (!finalPath.contains("lib")) {
             if (getSlashCharacter(finalPath)) finalPath += "/"
             finalPath += "lib"
         }
         if (getSlashCharacter(finalPath)) finalPath += "/"
-        finalPath = "$finalPath${configFile.folderOutput}"
 
-        val dir = File(finalPath)
-        dir.mkdirs()
+        return finalPath
+    }
 
+    private fun createFileFromZero(file: File, assetsFiles: List<AssetsFiles>, nameDartClass: String){
+        file.bufferedWriter().use { out ->
+            out.write("class ${nameDartClass.capitalize()} {\n")
+            assetsFiles.forEach {
+                out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
 
-        // Create a output file
-        val file = File(finalPath + "/" + configFile.nameOfAssetsFile!! + ".dart")
-
-        val defValueDart = "\tstatic const String"
-        val middleValueDart = "= \""
-        val endValueDart = "\";\n"
-
-        if (configFile.ignoreFonts!!) {
-            file.bufferedWriter().use { out ->
-                out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
-                assetsFiles.forEach {
-                    out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
-                }
-                out.write("\n}")
             }
-        } else {
-
-            if (configFile.mergeFontsInAssetsClass!!) {
-                file.bufferedWriter().use { out ->
-                    out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
-                    assetsFiles.forEach {
-                        out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
-                    }
-                    out.write("\n}")
-                }
-            } else {
-                file.bufferedWriter().use { out ->
-                    out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
-                    assetsFiles.forEach {
-                        if (!it.isFont)
-                            out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
-                    }
-                    out.write("\n}")
-                    out.newLine()
-                    out.newLine()
-                    out.newLine()
-
-                    out.write("class ${configFile.nameOfFontsClass!!.capitalize()} {\n")
-                    assetsFiles.forEach {
-                        if (it.isFont)
-                            out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
-                    }
-
-                }
-            }
+            out.write("}\n\n")
         }
+    }
 
-
+    private fun appendInFile(file: File, assetsFiles: List<AssetsFiles>, nameDartClass: String){
+        val fw = FileWriter(file, true)
+        fw.write("class ${nameDartClass.capitalize()} {\n")
+        assetsFiles.forEach {
+            if (it.isFont)
+                fw.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+        }
+        fw.write("}\n\n")
+        fw.close()
     }
 
     private fun getSlashCharacter(path: String): Boolean {
