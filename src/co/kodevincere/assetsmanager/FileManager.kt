@@ -6,6 +6,7 @@ import java.io.FileWriter
 import java.io.InputStream
 
 private const val FILE_CONFIG_NAME = "assets_manager_config.yaml"
+private const val MAC_OS_DS_STORE = ".DS_Store"
 private const val defValueDart = "\tstatic const String"
 private const val middleValueDart = "= \""
 private const val endValueDart = "\";\n"
@@ -15,7 +16,11 @@ class FileManager(val path: String) {
     fun createDefaultConfigFile() {
         println("Creating assets manager default config...")
         //Create a default file
-        val file = File("$path/$FILE_CONFIG_NAME")
+        var finalPath = path
+        if(getSlashCharacter(finalPath)) finalPath += "/"
+        finalPath += FILE_CONFIG_NAME
+
+        val file = File(finalPath)
 
         //Write default values for file
         val named = ConfigFileKey()
@@ -35,6 +40,8 @@ class FileManager(val path: String) {
             out.write("${named.defaultFolder}: ${configFile.folderOutput}\n")
             out.write("${named.ignoreFonts}: ${configFile.ignoreFontsConfig}\n")
             out.write("${named.postfixAssets}: ${configFile.postfixAssets}\n")
+            out.write("${named.pubspecStrategy}: ${configFile.pubspecStrategy}\n")
+            out.write("${named.pubspecUpdateFonts}: ${configFile.pubspecUpdateFonts}\n")
 
             out.newLine()
             out.write("# Output assets config\n")
@@ -66,6 +73,8 @@ class FileManager(val path: String) {
                 folderOutput = obj[namedFile.defaultFolder] as String? ?: defaultValues.folderOutput,
                 ignoreFontsConfig = obj[namedFile.ignoreFonts] as Boolean? ?: defaultValues.ignoreFontsConfig,
                 postfixAssets = obj[namedFile.postfixAssets] as String? ?: defaultValues.postfixAssets,
+                pubspecStrategy = obj[namedFile.pubspecStrategy] as String? ?: defaultValues.pubspecStrategy,
+                pubspecUpdateFonts = obj[namedFile.pubspecUpdateFonts] as Boolean? ?: defaultValues.pubspecUpdateFonts,
                 nameOfAssetsClass = obj[namedFile.nameOfAssetsClass] as String? ?: defaultValues.nameOfAssetsClass,
                 nameOfAssetsFile = obj[namedFile.nameOfAssetsFile] as String? ?: defaultValues.nameOfAssetsFile,
                 nameOfFontsClass = obj[namedFile.nameOfFontsClass] as String? ?: defaultValues.nameOfFontsClass,
@@ -77,29 +86,16 @@ class FileManager(val path: String) {
 
     fun readAssets(configFile: ConfigFileValues = ConfigFileValues()): ArrayList<AssetsFiles> {
         val finalPath = "$path/${configFile.assetsFolder}"
-
         val list: ArrayList<AssetsFiles> = ArrayList()
-        var folderName = ""
-
         File(finalPath).walk().forEach {
-            if (it.name.contains(".")) {
-                val finalName = (it.name).replace("-", "_").split(".")
-                val isFont = finalName[1] == "ttf" || finalName[1] == "otf" || folderName == "fonts" || folderName == "Fonts"
-
-                if (configFile.ignoreFontsConfig!! && isFont) return@forEach // Skip is ignore fonts and isFont = true
-                list.add(
-                        AssetsFiles(
-                                finalName[0],
-                                folderName,
-                                it.path,
-                                configFile.postfixAssets,
-                                configFile.assetsFolder,
-                                isFont
-                        )
-                )
-            } else {
-                folderName = it.name
-            }
+            if(it.name == MAC_OS_DS_STORE || !it.isHidden) return@forEach
+            list.add(
+                    AssetsFiles(
+                            file = it,
+                            postfix = configFile.postfixAssets,
+                            assetsFolder = configFile.assetsFolder,
+                    )
+            )
         }
 
         return list
@@ -116,14 +112,15 @@ class FileManager(val path: String) {
 
         // Create a output file
         val assetsDartFile = File("$finalPath/${configFile.nameOfAssetsFile!!}.dart")
-        createFileFromZero(assetsDartFile, assetsFiles.filter { !it.isFont }, configFile.nameOfAssetsClass!!)
+        createFileFromZero(assetsDartFile, assetsFiles.filter { it.isAsset() }, configFile.nameOfAssetsClass!!)
 
         if (!configFile.ignoreFontsConfig!! && !configFile.fontConfigNull) {
             var fontsDartFile: File? = null
             if(configFile.nameOfAssetsFile!! != configFile.nameOfFontsFile){
                 fontsDartFile = File("$finalPath/${configFile.nameOfFontsFile!!}.dart")
             }
-            appendInFile(fontsDartFile ?: assetsDartFile , assetsFiles.filter { it.isFont }, configFile.nameOfFontsClass!!)
+            appendInFile(fontsDartFile
+                    ?: assetsDartFile, assetsFiles.filter { it.isFont() }, configFile.nameOfFontsClass!!)
         }
     }
 
@@ -153,7 +150,7 @@ class FileManager(val path: String) {
         val fw = FileWriter(file, true)
         fw.write("class ${nameDartClass.capitalize()} {\n")
         assetsFiles.forEach {
-            if (it.isFont)
+            if (it.isFont())
                 fw.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
         }
         fw.write("}\n\n")

@@ -18,30 +18,26 @@ class AssetsManager : AnAction() {
         val pubspec = File(path, PUBSPEC_NAME)
 
 
-        if (!pubspec.exists()) {
-            println("Error $PUBSPEC_NAME dose not exist")
-        }else{
-            val yaml = Yaml()
-            val inputStream: InputStream = pubspec.inputStream()
-            val obj = yaml.load<Map<String, Any>>(inputStream)
+        val yaml = Yaml()
+        val inputStream: InputStream = pubspec.inputStream()
+        val obj = yaml.load<Map<String, Any>>(inputStream)
 
-            if(obj.containsKey("flutter")){
-                val assetsParent = obj["flutter"] as Map<*, *>
-                if(assetsParent.containsKey("assets")){
-                    val assetsKey = assetsParent["assets"]
-                    println(assetsKey)
-                }else{
+        if(obj.containsKey("flutter")){
+            val assetsParent = obj["flutter"] as Map<*, *>
+            if(assetsParent.containsKey("assets")){
+                val assetsKey = assetsParent["assets"]
 
-                }
+                println(assetsKey)
 
-
+                println(assetsKey)
             }else{
-                println("The $PUBSPEC_NAME has errors")
+
             }
 
 
+        }else{
+            println("The $PUBSPEC_NAME has errors")
         }
-
 
     }
 }
