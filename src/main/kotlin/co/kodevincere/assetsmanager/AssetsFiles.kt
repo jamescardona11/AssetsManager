@@ -3,11 +3,11 @@ package co.kodevincere.assetsmanager
 import java.io.File
 
 class AssetsFiles(file: File, postfix: String?, assetsFolder: String?){
-    val name: String
-    val type: AssetsFileType
-    val parentName: String?
+    private val name: String
+    private val type: AssetsFileType
+    private val parentName: String?
     val outputName: String
-    val extension = file.extension
+    private val extension = file.extension
     val path: String
 
     init {

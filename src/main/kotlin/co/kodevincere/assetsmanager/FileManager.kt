@@ -13,6 +13,17 @@ private const val endValueDart = "\";\n"
 
 class FileManager(val path: String) {
 
+
+    fun existsDefaultConfig(): Boolean{
+        var finalPath = path
+        if(getSlashCharacter(finalPath)) finalPath += "/"
+        finalPath += FILE_CONFIG_NAME
+
+        val file = File(finalPath)
+
+        return file.exists()
+    }
+
     fun createDefaultConfigFile() {
         println("Creating assets manager default config...")
         //Create a default file

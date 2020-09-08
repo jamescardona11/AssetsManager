@@ -11,7 +11,7 @@ import java.io.InputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
-const val PUBSPEC_NAME = "pubspec_default.yaml"
+const val PUBSPEC_NAME = "pubspec.yaml"
 
 class AssetsManager : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
@@ -20,13 +20,26 @@ class AssetsManager : AnAction() {
         val path = Objects.requireNonNull(project)!!.basePath
         val fileManager = FileManager(path!!)
 
-        fileManager.createDefaultConfigFile()
+        if(!fileManager.existsDefaultConfig()) {
+            fileManager.createDefaultConfigFile()
+        }
 
+        val configFile = fileManager.readConfigFile()
+        val assetsFiles = fileManager.readAssets(configFile)
 
+        fileManager.createAssetsOutPut(
+            configFile = configFile,
+            assetsFiles = assetsFiles
+        )
+
+        readAndWritePubspec(
+            path = path,
+            configFile = configFile,
+            assetsFiles = assetsFiles
+        )
     }
 
-
-    fun readPubspec(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>){
+    private fun readAndWritePubspec(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>){
         println("Updating assets manager...")
         val pubspec = File(path, PUBSPEC_NAME)
         val containsKey = hasAssetsAndFontsKey(pubspec)
@@ -67,9 +80,18 @@ class AssetsManager : AnAction() {
 
             line = reader.readLine()
         }
+
+        pubspec.bufferedWriter().use { out->
+            outPutLines.forEach {
+                out.write(it)
+                out.newLine()
+            }
+        }
+
     }
 
-    fun addNewAssetsToPubspec(strategy: String, assetsFiles: ArrayList<AssetsFiles>) : ArrayList<String>{
+
+    private fun addNewAssetsToPubspec(strategy: String, assetsFiles: ArrayList<AssetsFiles>) : ArrayList<String>{
         val outPutLines = ArrayList<String>()
         if(strategy == PubspecStrategy.ASSET.strategy){
             assetsFiles.filter { it.isAsset() }.forEach { af->
@@ -85,7 +107,7 @@ class AssetsManager : AnAction() {
 
     }
 
-    fun hasAssetsAndFontsKey(pubspec: File): Array<Boolean>{
+    private fun hasAssetsAndFontsKey(pubspec: File): Array<Boolean>{
         var assets = false
         var fonts = false
 
