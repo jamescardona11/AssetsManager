@@ -4,7 +4,7 @@ package co.kodevincere.assetsmanager
 data class ConfigFileValues
 constructor(//9
         var assetsFolder: String? = "assets",
-        var defaultFolder: String? = "lib/constants",
+        var folderOutput: String? = "constants",
         var ignoreFonts: Boolean? = true,
         var postfixAssets: String? = "", //you can choose: folder_name, extension_name, empty value or provide personal name
         var nameOfAssetsClass: String? = "Assets",

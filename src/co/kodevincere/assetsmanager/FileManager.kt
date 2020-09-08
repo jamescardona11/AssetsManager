@@ -1,6 +1,5 @@
 package co.kodevincere.assetsmanager
 
-import com.google.gson.Gson
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.io.InputStream
@@ -30,7 +29,7 @@ class FileManager {
 
             out.newLine()
             out.write("# Output config\n")
-            out.write("${named.defaultFolder}: ${configFile.defaultFolder}\n")
+            out.write("${named.defaultFolder}: ${configFile.folderOutput}\n")
             out.write("${named.ignoreFonts}: ${configFile.ignoreFonts}\n")
             out.write("${named.postfixAssets}: ${configFile.postfixAssets}\n")
 
@@ -61,7 +60,7 @@ class FileManager {
         val defaultValues = ConfigFileValues()
         return ConfigFileValues(
                 assetsFolder = obj[namedFile.assetsFolder] as String? ?: defaultValues.assetsFolder,
-                defaultFolder = obj[namedFile.defaultFolder] as String? ?: defaultValues.defaultFolder,
+                folderOutput = obj[namedFile.defaultFolder] as String? ?: defaultValues.folderOutput,
                 ignoreFonts = obj[namedFile.ignoreFonts] as Boolean? ?: defaultValues.ignoreFonts,
                 postfixAssets = obj[namedFile.postfixAssets] as String? ?: defaultValues.postfixAssets,
                 nameOfAssetsClass = obj[namedFile.nameOfAssetsClass] as String? ?: defaultValues.nameOfAssetsClass,
@@ -104,7 +103,40 @@ class FileManager {
         return list
     }
 
-    fun createAssetsOutPut(path: String, configFile: ConfigFileValues){
+    fun createAssetsOutPut(path: String, configFile: ConfigFileValues, assetsFiles: ArrayList<AssetsFiles>){
+        println("Creating output file...")
 
+        // Create a output dir
+        var finalPath = path
+        if(!finalPath.contains("lib")){
+            if(getSlashCharacter(finalPath)) finalPath += "/"
+            finalPath += "lib"
+        }
+        if(getSlashCharacter(finalPath)) finalPath += "/"
+        finalPath = "$finalPath${configFile.folderOutput}"
+
+        val dir = File(finalPath)
+        dir.mkdirs()
+
+
+        // Create a output file
+        val file = File(finalPath+ "/" +configFile.nameOfAssetsFile!! + ".dart")
+
+        val defValueDart = "\tstatic const String"
+        val middleValueDart = "= \""
+        val endValueDart = "\";\n"
+
+        file.bufferedWriter().use { out ->
+            out.write("class ${configFile.nameOfAssetsClass!!.capitalize()} {\n")
+            assetsFiles.forEach {
+                out.write("$defValueDart ${it.outputName} $middleValueDart${it.path}$endValueDart")
+            }
+            out.write("\n}")
+        }
+
+    }
+
+    private fun getSlashCharacter(path: String): Boolean {
+        return path[path.lastIndex ] != '/'
     }
 }
