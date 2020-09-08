@@ -38,6 +38,6 @@ enum class PostfixStrategy(val strategy: String) {
 
 enum class PubspecStrategy(val strategy: String) {
     FOLDER("folder"),
-    FILES("files"),
+    ASSET("files"),
 
 }

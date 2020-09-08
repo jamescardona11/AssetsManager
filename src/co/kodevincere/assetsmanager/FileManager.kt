@@ -88,7 +88,7 @@ class FileManager(val path: String) {
         val finalPath = "$path/${configFile.assetsFolder}"
         val list: ArrayList<AssetsFiles> = ArrayList()
         File(finalPath).walk().forEach {
-            if(it.name == MAC_OS_DS_STORE || !it.isHidden) return@forEach
+            if(it.name == MAC_OS_DS_STORE) return@forEach
             list.add(
                     AssetsFiles(
                             file = it,

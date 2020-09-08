@@ -60,6 +60,14 @@ class AssetsFiles(file: File, postfix: String?, assetsFolder: String?){
         return type == AssetsFileType.FOLDER
     }
 
+    fun isDirectoryFonts(): Boolean{
+        return (name ?: "") == "fonts" || (name ?: "") == "Fonts"
+    }
+
+    fun getAssetPrint(): String {
+        return "    - $path/"
+    }
+
     enum class AssetsFileType{
         FOLDER,
         FONT,
