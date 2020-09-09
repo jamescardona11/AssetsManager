@@ -5,31 +5,31 @@ The easy way to manage your assets Flutter project.
 
 ## TABLE OF CONTENT
 - [Features](#Features)
-- [Getting started](#Getting started)
-- [Change notes](#Change notes)
-- [Config file](#Config file)
-- [Example](#Example)
+- [GettingStarted](#Getting started)
+- [ChangeNotes](#Change notes)
+- [ConfigFile](#Config file)
+- [Example](#Output)
 
-##Features
+## Features
 - Update assets declaration in pubspec.yaml automatically.
 - Generate a file whit assets definition in dart.
 - Modify config for output and input data.
 
-##Getting started
+## Getting started
 * Open your Flutter project.
 * You may be create manual your assets config or plugin will create the default file
 * Click the plugin in the Toolbar.
 * Now you'll see the pubspec.yaml file has been updated and a file whit definition in dart.
 
 
-##Change notes
-####1.0.0 : Implement basic functions.
+## Change notes
+#### 1.0.0 : Implement basic functions.
 
 - Scan asset files under your assets directory, add asset declaration in pubspec.yaml.
 - Generate a file in dart, which contains string-type asset definition.
 
      
-##Config file
+## Config file
 Default name: **assets_manager_config.yaml**
 ``` yaml
 name: AssetsManager Config
@@ -71,9 +71,9 @@ name_assets_file: Name of file for output in dart
 ```
 
 
-###Output
+### Output
 
-##File in dart
+## File in dart
 ``` dart
 class Assets {
 	static const String auth_bottom = "assets/auth/auth_bottom.png";
@@ -83,6 +83,18 @@ class Assets {
 	static const String login_header = "assets/auth/login_header.svg";
 }
 ```
+
+## Preview
+
+| Before Pubspec  | After Pubspec|
+| :---        |    :----  |
+|   |
+| <img src="preview/before.png" width="225"/>  | <img src="preview/after.png" width="225"/>       |
+
+| Config File  | Output File |
+| :---        |    :----  |
+| |
+| <img src="preview/config_file.png" width="225"/>  | <img src="preview/output.png" width="225"/>     |
 
 
 
