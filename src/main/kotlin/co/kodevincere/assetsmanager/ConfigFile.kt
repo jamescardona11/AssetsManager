@@ -6,7 +6,7 @@ constructor(//9
         var assetsFolder: String? = "assets",
         var folderOutput: String? = "constants",
         var ignoreFontsConfig: Boolean? = true,
-        var postfixAssets: String? = "", //you can choose: folder_name, extension_name, empty value or provide personal name
+        var postfixAssets: String? = "", //you can choose: folder_name, extension_file, empty value or provide personal name
         var pubspecStrategy: String? = "folder", //you can choose: folder or files
         var pubspecUpdateFonts: Boolean? = true,
         var nameOfAssetsClass: String? = "Assets",
@@ -31,7 +31,7 @@ data class ConfigFileKey constructor(
 )
 
 enum class PostfixStrategy(val strategy: String) {
-    EXTENSION("extension_name"),
+    EXTENSION("extension_file"),
     FOLDER("folder_name"),
 
 }

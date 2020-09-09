@@ -50,7 +50,7 @@ class FileManager(val path: String) {
             out.write("# Output config\n")
             out.write("${named.defaultFolder}: ${configFile.folderOutput}\n")
             //out.write("${named.ignoreFonts}: ${configFile.ignoreFontsConfig}\n")
-            out.write("${named.postfixAssets}: ${configFile.postfixAssets}\n") //# folder_name, extension_name, empty or provide personal value
+            out.write("${named.postfixAssets}: ${configFile.postfixAssets}\n") //# folder_name, extension_file, empty or provide personal value
             out.write("${named.pubspecStrategy}: ${configFile.pubspecStrategy}\n") // # folder or files
             //out.write("${named.pubspecUpdateFonts}: ${configFile.pubspecUpdateFonts}\n")
 
