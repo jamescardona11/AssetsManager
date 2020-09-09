@@ -31,6 +31,7 @@ The easy way to manage your assets Flutter project.
      
 ## Config file
 Default name: **assets_manager_config.yaml**
+
 ``` yaml
 name: AssetsManager Config
 description: A Config to create a better experience with plugin
@@ -49,7 +50,9 @@ name_assets_class: Assets
 name_assets_file: assets_manager
 
 ```
+
 Explanation
+
 ``` yaml
 assets_folder: The directory where you save your assets files, images, videos, etc
 
