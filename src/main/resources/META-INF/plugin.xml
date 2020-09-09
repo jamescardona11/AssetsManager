@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>co.kodevincere.assetsmanager</id>
     <name>Flutter Assets Manager</name>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <vendor email="jjcardonao@gmail.com" url="http://www.github.com/jamescardona11">jamescardona11</vendor>
 
     <description><![CDATA[

@@ -3,5 +3,5 @@ out/
 src/test/**
 /build/**
 .gradle/**
-
+gradle.properties
 

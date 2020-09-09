@@ -14,6 +14,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
 
+publishPlugin {
+    token intellijPublishToken
+}
+
+
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.2'
