@@ -54,8 +54,10 @@ class AssetsManager : AnAction() {
             if(containsKey[0]){ //Contains 'assets' key in pubspec
                 if(line.matches(Regex("^ {2}assets:"))){ // start to delete assets
                     line = reader.readLine()
-                    while(line.matches(Regex("^ {2,}- .*")) || line.matches(Regex("^\\S*$"))){
+                    loop@ while(line.matches(Regex("^ {2,}-.*")) || line.matches(Regex("^\\S*$"))){
                         line = reader.readLine()
+
+                        if(line == null) break@loop
                     }
                     //add assets to pubspec
                     outPutLines.addAll(

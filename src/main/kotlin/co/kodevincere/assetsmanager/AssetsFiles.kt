@@ -65,7 +65,9 @@ class AssetsFiles(file: File, postfix: String?, assetsFolder: String?){
     }
 
     fun getAssetPrint(): String {
-        return "    - $path/"
+        var slash = ""
+        if(isDirectory()) slash = "/"
+        return "    - $path$slash"
     }
 
     enum class AssetsFileType{
