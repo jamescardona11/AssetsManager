@@ -15,21 +15,21 @@ The easy way to manage your assets Flutter project.
 - Generate a file whit assets definition in dart.
 - Modify config for output and input data.
 
-## Getting started
+## GettingStarted
 * Open your Flutter project.
 * You may be create manual your assets config or plugin will create the default file
 * Click the plugin in the Toolbar.
 * Now you'll see the pubspec.yaml file has been updated and a file whit definition in dart.
 
 
-## Change notes
+## ChangeNotes
 #### 1.0.0 : Implement basic functions.
 
 - Scan asset files under your assets directory, add asset declaration in pubspec.yaml.
 - Generate a file in dart, which contains string-type asset definition.
 
      
-## Config file
+## ConfigFile
 Default name: **assets_manager_config.yaml**
 
 ``` yaml
